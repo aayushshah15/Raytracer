@@ -27,8 +27,8 @@ vec3 color(const ray& r) {
 }
 
 int main() {
-	int nx = 200;
-	int ny = 100;
+	int nx = 400;
+	int ny = 200;
 	cout<<"P3\n"<<nx<<" "<<ny<<"\n255\n";
 	vec3 lower_left_corner(-2.0, -1.0, -1.0);
 	vec3 horizontal(4.0, 0.0, 0.0);
