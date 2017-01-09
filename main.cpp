@@ -5,10 +5,19 @@
 #include "camera.h"
 using namespace std;
 
+vec3 random_point_in_sphere() {
+	vec3 point;
+	do {
+		point = vec3(drand48(), drand48(), drand48())*2.0 - vec3(1,1,1);
+	} while (dot(point, point) >= 1.0);
+	return point;
+}
+
 vec3 color(const ray& r, hitable *world) {
 	hit_record rec;
 	if (world->hit(r, 0.0, MAXFLOAT, rec)) {
-		return vec3(rec.normal.x()+1,rec.normal.y()+1, rec.normal.z()+1)*0.5;
+		vec3 target = rec.p + rec.normal + random_point_in_sphere();
+		return color( ray(rec.p, target - rec.p), world )*0.5;
 	} else {
 		vec3 unit_direction = unit_vector(r.direction());
 		float t = (unit_direction.y() + 1.0)*0.5;
@@ -38,6 +47,7 @@ int main() {
 				col += color(r, world);
 			}
 			col /= float(ns);
+			col = vec3 (sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
 			int ir = int(255.99*col[0]);
 			int ig = int(255.99*col[1]);
 			int ib = int(255.99*col[2]);
