@@ -9,3 +9,8 @@ A 3D renderer written in C++
 
 ### Without reflections (only matte spheres) 
 ![alt tag](http://i.imgur.com/hPoVg18.jpg)
+
+
+
+### Preliminary render, using only surface normals to determine the colours
+![alt tag](http://i.imgur.com/g7nrsTI.jpg)
